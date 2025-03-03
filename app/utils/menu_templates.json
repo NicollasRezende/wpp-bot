@@ -1,0 +1,264 @@
+{
+    "greetings": {
+        "welcome": "Olá, {name}! Bem-vindo ao nosso atendimento pelo WhatsApp. Como posso ajudar você hoje?",
+        "returning_user": "Que bom ver você novamente, {name}! Em que posso ajudar hoje?",
+        "business_hours": "Nosso horário de atendimento é de {start_hour}h às {end_hour}h, de segunda a sexta-feira."
+    },
+
+    "menus": {
+        "initial": {
+            "title": "Menu Principal",
+            "content": "Selecione uma das opções abaixo:",
+            "options": [
+                { "id": "info", "title": "Informações Gerais" },
+                { "id": "support", "title": "Suporte" },
+                { "id": "commercial", "title": "Comercial" }
+            ]
+        },
+
+        "info": {
+            "title": "Informações Gerais",
+            "content": "Selecione uma opção para saber mais:",
+            "options": [
+                {
+                    "id": "about_company",
+                    "title": "Nossa Empresa",
+                    "description": "Conheça nossa história e valores"
+                },
+                {
+                    "id": "services",
+                    "title": "Nossos Serviços",
+                    "description": "Conheça os serviços que oferecemos"
+                },
+                {
+                    "id": "location",
+                    "title": "Localização",
+                    "description": "Onde nos encontrar"
+                },
+                {
+                    "id": "contact_info",
+                    "title": "Contatos",
+                    "description": "Nossos canais de atendimento"
+                },
+                {
+                    "id": "social_media",
+                    "title": "Redes Sociais",
+                    "description": "Siga-nos nas redes sociais"
+                }
+            ]
+        },
+
+        "support": {
+            "title": "Suporte",
+            "content": "Como podemos ajudar você hoje?",
+            "options": [
+                { "id": "technical", "title": "Suporte Técnico" },
+                { "id": "financial", "title": "Suporte Financeiro" },
+                { "id": "feedback", "title": "Feedback" }
+            ]
+        },
+
+        "commercial": {
+            "title": "Comercial",
+            "content": "Conheça nossas soluções:",
+            "sections": [
+                {
+                    "title": "Soluções de Voz",
+                    "options": [
+                        {
+                            "id": "sip",
+                            "title": "SIP Server",
+                            "description": "Serviço de servidor de voz SIP"
+                        },
+                        {
+                            "id": "call_recorder",
+                            "title": "Gravador de Chamadas",
+                            "description": "Serviço de gravação de chamadas"
+                        },
+                        {
+                            "id": "ip_phones",
+                            "title": "Aparelhos IP",
+                            "description": "Serviço de telefonia com aparelhos IP"
+                        },
+                        {
+                            "id": "ura",
+                            "title": "URA",
+                            "description": "Atendimento automático de voz"
+                        },
+                        {
+                            "id": "gateways",
+                            "title": "Gateways",
+                            "description": "Serviço de integração de rede"
+                        },
+                        {
+                            "id": "voicemail",
+                            "title": "Correio de Voz",
+                            "description": "Serviço de caixa de correio de voz"
+                        },
+                        {
+                            "id": "reports",
+                            "title": "Relatórios",
+                            "description": "Geração de relatórios de chamadas"
+                        }
+                    ]
+                },
+                {
+                    "title": "Soluções de Dados",
+                    "options": [
+                        {
+                            "id": "vpn",
+                            "title": "VPN",
+                            "description": "Serviço de rede privada virtual"
+                        },
+                        {
+                            "id": "firewall",
+                            "title": "Firewall",
+                            "description": "Serviço de proteção de rede"
+                        },
+                        {
+                            "id": "virtualization",
+                            "title": "Virtualização",
+                            "description": "Serviço de virtualização de servidores"
+                        }
+                    ]
+                },
+                {
+                    "title": "Soluções de Segurança",
+                    "options": [
+                        {
+                            "id": "cctv",
+                            "title": "CFTV",
+                            "description": "Serviço de Circuito Fechado de TV"
+                        },
+                        {
+                            "id": "electric_fence",
+                            "title": "Cerca Elétrica",
+                            "description": "Serviço de Cerca Elétrica"
+                        },
+                        {
+                            "id": "alarm",
+                            "title": "Alarme",
+                            "description": "Serviço de Alarme de Segurança"
+                        }
+                    ]
+                },
+                {
+                    "title": "Outros Serviços",
+                    "options": [
+                        {
+                            "id": "cabling",
+                            "title": "Cabeamento",
+                            "description": "Serviço de Cabeamento Estruturado"
+                        },
+                        {
+                            "id": "rental",
+                            "title": "Locação",
+                            "description": "Serviço de locação de equipamentos"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "forms": {
+        "technical_support": {
+            "title": "Suporte Técnico",
+            "content": "Por favor, descreva o problema que está enfrentando e envie uma mensagem detalhada. Nossa equipe responderá o mais breve possível.",
+            "fields": ["description"]
+        },
+
+        "financial_support": {
+            "title": "Suporte Financeiro",
+            "content": "Por favor, informe o tipo de suporte financeiro que você precisa:",
+            "options": [
+                { "id": "invoice", "title": "Segunda via de fatura" },
+                { "id": "payment", "title": "Informações de pagamento" },
+                { "id": "negotiation", "title": "Negociação de débitos" },
+                { "id": "other", "title": "Outros assuntos financeiros" }
+            ]
+        },
+
+        "feedback": {
+            "title": "Feedback",
+            "content": "Agradecemos seu feedback! Por favor, avalie nosso atendimento:",
+            "options": [
+                { "id": "excellent", "title": "Excelente" },
+                { "id": "good", "title": "Bom" },
+                { "id": "average", "title": "Regular" },
+                { "id": "poor", "title": "Ruim" },
+                { "id": "very_poor", "title": "Muito ruim" }
+            ]
+        },
+
+        "contact_form": {
+            "title": "Formulário de Contato",
+            "content": "Por favor, preencha as informações abaixo:",
+            "fields": [
+                {
+                    "name": "full_name",
+                    "label": "Nome completo",
+                    "required": true
+                },
+                { "name": "email", "label": "E-mail", "required": true },
+                { "name": "phone", "label": "Telefone", "required": false },
+                { "name": "subject", "label": "Assunto", "required": true },
+                { "name": "message", "label": "Mensagem", "required": true }
+            ]
+        }
+    },
+
+    "service_details": {
+        "sip": {
+            "title": "SIP Server",
+            "content": "Para solicitar esse serviço, você deve enviar uma mensagem contendo as seguintes informações:\n\nInformações do contratante:\n- Nome\n- Nome da empresa\n- Setor da empresa\n- Tamanho da empresa (número de funcionários)\n\nDetalhes técnicos:\n- Número de linhas SIP necessárias\n- Necessidades específicas de chamadas\n- Requisitos de segurança\n\nPreferências de serviço:\n- Tipo de serviço (hospedagem de SIP, SIP trunking)\n- Duração do contrato desejada\n- Suporte técnico\n- Integração com outros sistemas\n\nTráfego estimado:\n- Número estimado de chamadas simultâneas\n- Volume de tráfego de voz ou dados"
+        },
+
+        "vpn": {
+            "title": "VPN",
+            "content": "Para solicitar esse serviço, você deve enviar uma mensagem contendo as seguintes informações:\n\nInformações do contratante:\n- Nome\n- Nome da empresa\n- Setor da empresa\n- Tamanho da empresa (número de funcionários)\n\nDetalhes do serviço:\n- Número de usuários da VPN\n- Localização dos usuários (local, nacional, internacional)\n- Tipo de dispositivos a serem usados (desktop, celular, ambos)\n- Integração com infraestrutura existente\n\nRequisitos de segurança:\n- Requisitos específicos de conformidade (por exemplo, GDPR, LGPD)\n\nRecursos adicionais:\n- Velocidade de conexão desejada\n- Serviços adicionais (ex.: proteção contra malware)"
+        },
+
+        "cctv": {
+            "title": "CFTV",
+            "content": "Para solicitar esse serviço, você deve enviar uma mensagem contendo as seguintes informações:\n\nInformações do contratante:\n- Nome\n- Nome da empresa\n- Setor da empresa\n- Tamanho da empresa (número de funcionários)\n\nDetalhes do serviço:\n- Tipo de câmeras (interna, externa, infravermelho, etc.)\n- Resolução das câmeras (SD, HD, Full HD, 4K)\n- Necessidade de gravação contínua ou por detecção de movimento\n\nInstalação:\n- Localização da instalação (endereço)\n- Tipo de propriedade (residencial, comercial, industrial)\n- Necessidade de fiação ou preferência por câmeras sem fio\n\nMonitoramento:\n- Necessidade de monitoramento remoto (via smartphone ou computador)\n- Necessidade de serviço de monitoramento profissional\n\nRecursos adicionais:\n- Visão noturna\n- Armazenamento em nuvem\n\nManutenção:\n- Frequência desejada de manutenção (mensal, trimestral, anual)"
+        }
+    },
+
+    "system": {
+        "terms_acceptance": {
+            "title": "Termos e Condições",
+            "content": "Antes de começarmos, precisamos que você aceite nossos termos e condições de uso.\n\nPor favor, leia nossos termos em: https://example.com/terms\n\nPara continuar, selecione uma opção abaixo:",
+            "options": [
+                { "id": "accept_terms", "title": "Aceitar" },
+                { "id": "reject_terms", "title": "Recusar" }
+            ]
+        },
+
+        "outside_business_hours": {
+            "title": "Fora do Horário de Atendimento",
+            "content": "Olá! Nosso horário de atendimento é de {start_hour}h às {end_hour}h, de segunda a sexta-feira.\n\nSua mensagem foi registrada e responderemos assim que possível durante o próximo horário de atendimento.\n\nAgradecemos sua compreensão."
+        },
+
+        "conversation_end": {
+            "title": "Fim de Conversa",
+            "content": "Agradecemos por entrar em contato! Foi um prazer atendê-lo.\n\nPrecisa de mais alguma coisa?",
+            "options": [
+                { "id": "return_menu", "title": "Voltar ao Menu Principal" },
+                { "id": "end_conversation", "title": "Encerrar Atendimento" }
+            ]
+        },
+
+        "evaluation": {
+            "title": "Avaliação de Atendimento",
+            "content": "Sua opinião é muito importante para nós! Como você avalia nosso atendimento?",
+            "options": [
+                { "id": "very_good", "title": "Muito Bom" },
+                { "id": "good", "title": "Bom" },
+                { "id": "average", "title": "Regular" },
+                { "id": "poor", "title": "Ruim" },
+                { "id": "very_poor", "title": "Muito Ruim" }
+            ]
+        }
+    }
+}
