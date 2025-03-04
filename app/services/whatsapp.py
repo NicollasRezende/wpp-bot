@@ -7,6 +7,7 @@ from typing import List, Dict, Any, Optional, Union
 from fastapi import HTTPException, UploadFile
 from sqlalchemy.orm import Session
 from datetime import datetime
+import logging as logger
 
 from config.settings import settings
 from app.db.crud.user import user as user_crud, conversation_log
@@ -27,7 +28,7 @@ class WhatsAppService:
         """
         Send a text message to a WhatsApp user
         """
-        url = f"{self.base_url}/{self.page_id}/messages"
+        url = f"{self.base_url.rstrip('/')}/{self.page_id}/messages"
         
         payload = {
             "messaging_product": "whatsapp",
@@ -37,25 +38,39 @@ class WhatsAppService:
             "text": {"body": message}
         }
         
+        logger.info(f"Sending message to {phone_number}: {message}")
+        logger.info(f"WhatsApp API URL: {url}")
+        logger.info(f"Headers: {self.headers}")
+        logger.info(f"Payload: {payload}")
+        
         async with httpx.AsyncClient() as client:
-            response = await client.post(url, headers=self.headers, json=payload)
-            
-            if response.status_code >= 400:
-                raise HTTPException(
-                    status_code=response.status_code,
-                    detail=f"WhatsApp API error: {response.text}"
-                )
+            try:
+                response = await client.post(url, headers=self.headers, json=payload)
                 
-            # Log the message to the database if requested
-            if log_to_db and db and user_id:
-                conversation_log.create_log(
-                    db=db,
-                    user_id=user_id,
-                    message=message,
-                    direction="outgoing"
-                )
+                logger.info(f"WhatsApp API response status: {response.status_code}")
+                logger.info(f"WhatsApp API response: {response.text}")
                 
-            return response.json()
+                if response.status_code >= 400:
+                    error_detail = f"WhatsApp API error: {response.text}"
+                    logger.error(error_detail)
+                    raise HTTPException(
+                        status_code=response.status_code,
+                        detail=error_detail
+                    )
+                    
+                # Log the message to the database if requested
+                if log_to_db and db and user_id:
+                    conversation_log.create_log(
+                        db=db,
+                        user_id=user_id,
+                        message=message,
+                        direction="outgoing"
+                    )
+                    
+                return response.json()
+            except Exception as e:
+                logger.error(f"Exception when sending message: {str(e)}")
+                raise
 
     async def send_template_message(
         self, 

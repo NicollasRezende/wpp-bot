@@ -119,9 +119,10 @@ async def process_message(
     name: Optional[str] = None
 ):
     """
-    Process a single message from the webhook
+    Process a single message from the webhook - simplified version
     """
     try:
+        # Ensure we have a phone number
         if not phone_number and "from" in message:
             phone_number = message["from"]
             
@@ -129,66 +130,43 @@ async def process_message(
             logger.error("No phone number in message")
             return
             
-        # Format phone number for consistency
-        phone_number = format_phone_number(phone_number)
+        # Extract message text
+        message_text = "No text"
+        if message.get("type") == "text" and "text" in message:
+            message_text = message["text"].get("body", "No text")
         
-        # Get message type and content
-        message_type = message.get("type")
-        message_text = None
-        interactive_data = None
+        # Log receipt of message
+        logger.info(f"Received message: '{message_text}' from {phone_number}")
         
-        if message_type == "text" and "text" in message:
-            message_text = message["text"].get("body", "")
-        elif message_type == "interactive" and "interactive" in message:
-            interactive_data = message["interactive"]
-            
-            # Try to extract text from interactive responses
-            if "button_reply" in interactive_data:
-                message_text = interactive_data["button_reply"].get("title", "")
-            elif "list_reply" in interactive_data:
-                message_text = interactive_data["list_reply"].get("title", "")
-                
-        # Skip processing if no text content
-        if not message_text and not interactive_data:
-            logger.info(f"Skipping message with no text content from {phone_number}")
-            return
-            
-        # Check if user exists, create if not
+        # Check if user exists
         user = user_crud.get_by_phone_number(db, phone_number=phone_number)
         
         if not user:
             # Create new user
+            logger.info(f"Creating new user with phone number {phone_number}")
             user = user_crud.create_with_phone(
                 db,
                 obj_in={
                     "phone_number": phone_number,
-                    "name": name,
-                    "terms_accepted": False
+                    "name": name or "Usuário",
+                    "terms_accepted": True  # Accept terms automatically for testing
                 }
             )
-            
-            # Send terms and conditions if not accepted
-            if not user.terms_accepted:
-                await send_terms_message(db, user)
-                return
-                
-        # If outside business hours and not a system admin
-        if not is_business_hours() and not is_admin_user(user):
-            await send_outside_business_hours_message(db, user)
-            return
-            
-        # Process message with menu service
-        response_message, response_data = await menu_service.handle_incoming_message(
-            db,
-            user,
-            message_text or "",
-            interactive_data
+        
+        # Send a simple response
+        await whatsapp_service.send_message(
+            phone_number=phone_number,  # Use phone_number directly to avoid any attribute issues
+            message=f"Olá! Recebi sua mensagem: '{message_text}'",
+            log_to_db=False,  # Disable logging temporarily
+            user_id=None,     # Don't require user_id for now
+            db=None           # Don't require db for now
         )
         
-        # Send response based on type
-        await send_response(db, user, response_message, response_data)
     except Exception as e:
         logger.error(f"Error processing message: {str(e)}")
+        # Print detailed traceback for debugging
+        import traceback
+        logger.error(traceback.format_exc())
 
 
 async def send_terms_message(db: Session, user: User):

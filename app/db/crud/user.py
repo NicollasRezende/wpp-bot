@@ -14,15 +14,15 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         """
         return db.query(User).filter(User.phone_number == phone_number).first()
     
-    def create_with_phone(self, db: Session, *, obj_in: UserCreate) -> User:
+    def create_with_phone(self, db: Session, *, obj_in: dict) -> User:
         """
         Create a new user with phone number.
         """
         db_obj = User(
-            name=obj_in.name,
-            phone_number=obj_in.phone_number,
-            contract_number=obj_in.contract_number,
-            terms_accepted=obj_in.terms_accepted
+            name=obj_in.get("name"),
+            phone_number=obj_in.get("phone_number"),
+            contract_number=obj_in.get("contract_number"),
+            terms_accepted=obj_in.get("terms_accepted", False)
         )
         db.add(db_obj)
         try:
