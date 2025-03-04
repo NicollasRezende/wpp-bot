@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from typing import Dict, Any, Optional
 import json
 import logging
+import os
 
 from config.settings import settings
 from config.database import get_db
