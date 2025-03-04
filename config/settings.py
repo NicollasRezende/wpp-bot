@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     DEBUG: bool = False
     SECRET_KEY: str
     
+    # App settings
+    APP_NAME: str = "WhatsApp API Template"  # Adicione esta linha
+    TIMEZONE: str = "America/Sao_Paulo"      # Adicione esta linha
+    
     # CORS settings
     BACKEND_CORS_ORIGINS: List[str] = ["*"]
     
@@ -35,10 +39,10 @@ class Settings(BaseSettings):
     
     # Logging
     LOG_LEVEL: str = "INFO"
-    
     class Config:
         env_file = ".env"
         case_sensitive = True
+        extra = "allow"
 
     @validator("MEDIA_PATH", "LOG_PATH")
     def create_directories(cls, v):
